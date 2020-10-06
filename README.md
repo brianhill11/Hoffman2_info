@@ -2,7 +2,7 @@
 This repo is for aggregating information about using the Hoffman2 cluster at UCLA.
 
 ## Using $SCRATCH storage
-If you are storing files in your [$SCRATCH](https://www.hoffman2.idre.ucla.edu/data-storage/#SCRATCH) directory on Hoffman2, files older than 14 days are subject to deletion by the system. One method for keeping your files "fresh" is to execute the `touch` command on all files in your scratch directory once a week. For a tutorial on how to set up a job to do this, see [this repo](https://github.com/brianhill11/touch) 
+If you are storing files in your [$SCRATCH](https://www.hoffman2.idre.ucla.edu/data-storage/#SCRATCH) directory on Hoffman2, files older than 7 days are subject to deletion by the system. One method for keeping your files "fresh" is to execute the `touch` command on all files in your scratch directory once a week. For a tutorial on how to set up a job to do this, see [this repo](https://github.com/brianhill11/touch) 
 
 **NOTE**: Any files that need to be stored long term (and backed up) should be stored in your $HOME directory.  
 
