@@ -34,3 +34,7 @@ Some things to note:
 - starting a job on GPU nodes with newer/more desirable cards will be more difficult (i.e. V100 cards), so if you don't want to wait, choosing an older card will be faster (i.e. P4). 
 - GPU nodes do not have much system memory (sometimes <= 24GB) and if you try to ask for more memory than any of the GPU nodes have, you will not get a node. 
 - Some of the GPU nodes have older CPUs, which don't always have the latest instructions (like AVX or AVX2), and some softwares (like tensorflow 2.0+) are compiled using these instructions and will crash (dump core) when trying to run. You may have to install an older version of software that was compiled without these instructions, or compile the software on the GPU nodes yourself. 
+
+## Using Anaconda 
+
+### Environment storage location/disk space issues
