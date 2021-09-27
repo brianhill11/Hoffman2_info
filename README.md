@@ -37,4 +37,101 @@ Some things to note:
 
 ## Using Anaconda 
 
+Special thanks to [Zeyuan (Johnson) Chen](https://github.com/Zeyuan-Chen) for creating this guide for using Anaconda on Hoffman!
+
+```
+# These are the two available condas on Hoffman:
+# anaconda3/2020.07  (running python/3.8.3)
+# anaconda3/2020.11    (running python/3.8.5)
+
+# Anaconda doesnt officially support 3.9.6 yet
+
+########################################
+######### set up new conda env #########
+##########  Big picture here   #########
+########################################
+# set up a jupyter notebook with access to multiple conda env: https://towardsdatascience.com/how-to-set-up-anaconda-and-jupyter-notebook-the-right-way-de3b7623ea4a
+
+cd project-halperin/sn-Methylation/
+module load anaconda3/2020.11
+# --prefiex specify the path and python== specify the python version to pull from anaconda 
+conda create --prefix ./envs python=3.7.3 anaconda 
+
+
+# only need to run this once to init the bash per login node 
+conda init bash
+
+# show all the envs
+conda env list 
+
+# instead of having the absolute path showing up, we can use the following command to find the path
+conda config --set env_prompt '({name})'
+
+# now to activate the env you can go to the project directory and directly activate conda 
+cd project-halperin/sn-Methylation/
+conda activate ./envs
+
+# to install pacakges use the following command 
+#(turns out that pip and ipykernel is already installed when installling python3.7.3)
+
+conda install pip
+conda install ipykernel
+
+conda deactivate ./envs
+
+# if you can modify the base conda env where jupyter lives, do the following to set up notebook automatically 
+# most of these wont be able to install on hoffman 
+conda activate base
+conda install -c conda-forge jupyterlab
+conda install -c conda-forge nb_conda_kernels
+conda install -c conda-forge jupyter_contrib_nbextensions
+conda deactivate base
+
+# Alternativly go back to the link to the notebook manually 
+conda activate ./envs
+python -m ipykernel install --user --name=sn-Methylation
+conda deactivate ./envs
+
+
+# Helpful reading: 
+# specify a location for conda: https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#specifying-a-location-for-an-environment
+# specify a version of python : https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-python.html#installing-a-different-version-of-python
+# pip inside conda: https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#using-pip-in-an-environment
+# set up a jupyter notebook with access to multiple conda env: https://towardsdatascience.com/how-to-set-up-anaconda-and-jupyter-notebook-the-right-way-de3b7623ea4a
+# set up a jupyter notebook and link to a conda env manually: https://medium.com/@nrk25693/how-to-add-your-conda-environment-to-your-jupyter-notebook-in-just-4-steps-abeab8b8d084
+
+
+#############################
+######### R version #########
+#############################
+
+cd project-halperin/TCAx/
+conda create --prefix ./envs
+conda activate ./envs
+conda search r-base
+conda install r-base=3.6.0
+#check you have the right version installed with 
+Rscript -e "R.version.string"
+
+#installing notebook kernel and register it
+#inside R
+install.packages('IRkernel')
+IRkernel::installspec() 
+Rscript -e 'IRkernel::installspec(name="ir36", displayname="TCAx-R")'
+
+# Helpful reading: 
+# install a R conda env https://takehomessage.com/2020/01/07/virtual-environment-r-development/
+# link R conda env to jupyter via command line https://stackoverflow.com/questions/61494376/how-to-connect-r-conda-env-to-jupyter-notebook
+# link R conda evn to jupyter inside R https://github.com/IRkernel/IRkernel#installation
+
+##########################################
+############ available kernels ###########
+##########################################
+#Finally, to see all the avalible kernel linked to your base conda's jupyter
+conda activate base
+jupyter kernelspec list
+conda deactivate 
+```
+
+
 ### Environment storage location/disk space issues
